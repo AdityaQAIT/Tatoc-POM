@@ -29,7 +29,7 @@ public class TatocTest {
 	
 	@Test()
 	public void NotClickOnBasicCourse() {
-		Assert.assertTrue(basic.ClickonAdvanceCourseLink());
+		Assert.assertTrue(basic.isErrorByClickingonAdvanceCourseLink());
 	}
 	
 	@Test(dependsOnMethods= {"NotClickOnBasicCourse"})
@@ -40,7 +40,7 @@ public class TatocTest {
 	
 	@Test(dependsOnMethods= {"ClickOnBasicCourse"})
 	public void ClickOnRedBoxinGridGate() {
-		Assert.assertTrue(gridgate.ClickOnRedbox());
+		Assert.assertTrue(gridgate.isErrorByClickOnRedbox());
 	}
 	
 	@Test(dependsOnMethods= {"ClickOnRedBoxinGridGate"})
@@ -51,18 +51,34 @@ public class TatocTest {
 	}
 	
 	@Test(dependsOnMethods= {"ClickOnGreenboxInGridGAte"})
+	public void NotMatchColor() {
+		Assert.assertTrue(framedungeon.isErrorByClickProceedWithoutMatch());
+	}
+	
+	@Test(dependsOnMethods= {"NotMatchColor"})
 	public void MatchColorInBoxes() {
 		dragaround = framedungeon.MatvhtheColorInBoxes();
 		Assert.assertFalse(framedungeon.isFrameDungeonPage());
 	}
 	
 	@Test(dependsOnMethods= {"MatchColorInBoxes"})
+	public void ProceedWithoutDragingTheBox() {
+		Assert.assertTrue(dragaround.isErrorPageByProceedingWihoutDraging());
+	}
+	
+	
+	@Test(dependsOnMethods= {"ProceedWithoutDragingTheBox"})
 	public void DragAndDropBoxToCorrectDropbox() {
 		popupwindow  = dragaround.DragAndDropBox();
 		Assert.assertFalse(dragaround.isDragAroundPage());
 	}
 	
 	@Test(dependsOnMethods= {"DragAndDropBoxToCorrectDropbox"})
+	public void ClickProceedWithoutOpeningPopupWindow() {
+		Assert.assertTrue(popupwindow.isErrorPageOnClickOfProceed());
+	}
+	
+	@Test(dependsOnMethods= {"ClickProceedWithoutOpeningPopupWindow"})
 	public void ClickOnPopupLinkAndFillTheName() {
 		cookiehandling = popupwindow.ClickOnPopupAndFilltheField();
 		Assert.assertFalse(popupwindow.isPopUpPage());
@@ -70,6 +86,11 @@ public class TatocTest {
 	}
 	
 	@Test(dependsOnMethods= {"ClickOnPopupLinkAndFillTheName"})
+	public void ClickProceedWithoutCreatingCookie() {
+		Assert.assertTrue(cookiehandling.isErrorPageWithoutCreatingCookie());
+	}
+	
+	@Test(dependsOnMethods= {"ClickProceedWithoutCreatingCookie"})
 	public void CreateCookieOnpage() {
 		Assert.assertTrue(cookiehandling.isCookieSuccessfullyAdded());
 	}
