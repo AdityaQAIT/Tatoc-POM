@@ -26,5 +26,12 @@ public class CookieHandling {
 		    driver.findElement(By.linkText("Proceed")).click();
 		    return driver.getCurrentUrl().equals("http://10.0.1.86/tatoc/end");
 	}
+	
+	public boolean isErrorPageWithoutCreatingCookie() {
+		 driver.findElement(By.linkText("Proceed")).click();
+		 String url = driver.getCurrentUrl();
+		 driver.navigate().back();
+		 return url.equals("http://10.0.1.86/tatoc/error");
+	}
 
 }
