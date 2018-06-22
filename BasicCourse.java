@@ -23,7 +23,7 @@ public class BasicCourse {
 		
 	}
 	
-	public boolean ClickonAdvanceCourseLink() {
+	public boolean isErrorByClickingonAdvanceCourseLink() {
 		
 		driver.findElement(By.linkText("Advanced Course")).click();
 		String url = driver.getCurrentUrl();
